@@ -2,7 +2,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-void	pstr(char *str)
+void	ft_putstr(char *str)
 {
 	int	i;
 
@@ -14,14 +14,14 @@ void	pstr(char *str)
 	}
 }
 
-int	putstr(char *str)
+int	ft_printstr(char *str)
 {
 	int	i;
 
 	i = 0;
 	if( str == NULL)
 	{
-		pstr("(null)");
+		ft_putstr("(null)");
 		return(6);
 	}
 	while(str[i])
@@ -32,18 +32,18 @@ int	putstr(char *str)
 	return(i);
 }
 
-int	putnbr(int n)
+int	ft_printnbr(int n)
 {
 	int len;
 	char* num;
 
 	len = 0;
 	num = ft_itoa(n);
-	len = putstr(num);
+	len = ft_printstr(num);
 	return(len);
 }
 
-int	putpercent(void)
+int	ft_printpercent(void)
 {
 	write(1, "%", 1);
 	return(1);
