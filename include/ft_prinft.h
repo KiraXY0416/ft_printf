@@ -1,8 +1,8 @@
 #ifndef FT_PRINTF_H
 #define FT_PRINFT_H
 
-# include <stdarg.h>
-# include <unistd.h>
+#include <stdarg.h>
+#include <unistd.h>
 
 int		ft_printf(const char *format, ...);
 int		ft_formats(va_list args, const char format);
