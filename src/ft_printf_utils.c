@@ -40,6 +40,7 @@ int	ft_printnbr(int n)
 	len = 0;
 	num = ft_itoa(n);
 	len = ft_printstr(num);
+	free(num);
 	return(len);
 }
 

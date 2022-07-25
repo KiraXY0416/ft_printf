@@ -1,5 +1,5 @@
 #include "ft_printf.h"
-#include "libft"
+#include "libft.h"
 
 int	ft_hexlen(unsigned	int num)
 {
@@ -18,13 +18,13 @@ void	ft_puthex(unsigned int num, const char format)
 {
 	if(num >= 16)
 	{
-		ft_puthex(num / 16, format)
-		ft_puthex(num / 16, format)
+		ft_puthex(num / 16, format);
+		ft_puthex(num % 16, format);
 	}
 	else
 	{
-		if(num < 9)
-			ft_putchar(num + 0);
+		if(num <= 9)
+			ft_putchar(num + '0');
 		else
 		{
 			if(format == 'x')

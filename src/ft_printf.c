@@ -1,7 +1,6 @@
-#include <stdarg.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
-int	putchar(int c)
+int	ft_printchar(int c)
 {
 	write(1, &c, 1);
 	return (1);
@@ -9,29 +8,29 @@ int	putchar(int c)
 
 int	ft_formats(va_list args, const char format)
 {
-	int putlength;
+	int	print_length;
 
-	putlength = 0;
+	print_length = 0;
 	if (format == 'c')
-		putlength += putchar(va_arg(args, int));
+		print_length += ft_printchar(va_arg(args, int));
 	else if (format == 's')
-		putlength += putstr(va_arg(args, const char*));
+		print_length += ft_printstr(va_arg(args, char *));
 	else if (format == 'p')
-		putlength += putptr(va_arg(args, unsigned long long));
+		print_length += ft_print_ptr(va_arg(args, unsigned long long));
 	else if (format == 'd' || format == 'i')
-		putlength += putnbr(va_arg(args, int));
+		print_length += ft_printnbr(va_arg(args, int));
 	else if (format == 'u')
-		putlength += putunsigned(va_arg(args, unsigned int));
+		print_length += ft_print_unsigned(va_arg(args, unsigned int));
 	else if (format == 'x' || format == 'X')
-		putlength += puthex(va_arg(args, unsigned int), format);
+		print_length += ft_print_hex(va_arg(args, unsigned int), format);
 	else if (format == '%')
-		putlength += putpercent();
-	return(putlength);
+		print_length += ft_printpercent();
+	return (print_length);
 }
 
 int	ft_printf(const char *str, ...)
 {
-	int	i
+	int	i;
 	va_list	args;
 	int	putlength;
 
@@ -40,13 +39,13 @@ int	ft_printf(const char *str, ...)
 	va_start(args, str);
 	while(str[i])
 	{
-		if(str[i] == %)
+		if(str[i] == '%')
 		{
 			putlength += ft_formats(args, str[i + 1]);
-			i++
+			i++;
 		}
 		else
-			putlength += putchar(str[i]);
+			putlength += ft_printchar(str[i]);
 		i++;
 	}
 	va_end(args);
